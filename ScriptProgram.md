@@ -9,8 +9,12 @@ local UICorner = Instance.new("UICorner")
 local Title = Instance.new("TextLabel")
 local Autofarm = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
+local LowGFX = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
 local Loaded = Instance.new("TextLabel")
 local Autofarm_2 = Instance.new("TextLabel")
+
+
 
 SodiumClient.Name = "SodiumClient"
 SodiumClient.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -52,6 +56,21 @@ Autofarm.TextWrapped = true
 
 UICorner_2.Parent = Autofarm
 
+LowGFX.Name = "LowGFX"
+LowGFX.Parent = FirstFrameLog
+LowGFX.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+LowGFX.Position = UDim2.new(0.048780486, 0, 0.67958653, 0)
+LowGFX.Size = UDim2.new(0, 184, 0, 46)
+LowGFX.Font = Enum.Font.Arcade
+LowGFX.Text = "Less Lag"
+LowGFX.TextColor3 = Color3.fromRGB(255, 255, 255)
+LowGFX.TextScaled = true
+LowGFX.TextSize = 14.000
+LowGFX.TextStrokeTransparency = 0.000
+LowGFX.TextWrapped = true
+
+UICorner_3.Parent = LowGFX
+
 Loaded.Name = "Loaded"
 Loaded.Parent = SodiumClient
 Loaded.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -80,15 +99,15 @@ Autofarm_2.TextWrapped = true
 
 -- Scripts:
 
-local function TOENTJK_fake_script()
+local function SFTOD_fake_script() -- FirstFrameLog.Drag 
 	local script = Instance.new('LocalScript', FirstFrameLog)
 
 	script.Parent.Active = true
 	wait(0)
 	script.Parent.Draggable = true
 end
-coroutine.wrap(TOENTJK_fake_script)()
-local function YUFMKE_fake_script()
+coroutine.wrap(SFTOD_fake_script)()
+local function UPPNT_fake_script() -- Autofarm.Autofarm 
 	local script = Instance.new('LocalScript', Autofarm)
 
 	-- Tables Below(Can be changed!)
@@ -122,12 +141,52 @@ local function YUFMKE_fake_script()
 	
 	
 end
-coroutine.wrap(YUFMKE_fake_script)()
-local function PTOZEWY_fake_script()
+coroutine.wrap(UPPNT_fake_script)()
+local function KCLSY_fake_script() -- LowGFX.Low 
+	local script = Instance.new('LocalScript', LowGFX)
+
+	if nil then repeat until nil script:Destroy() end
+	
+	while true do
+		wait()
+		if not script:IsDescendantOf(game.Players.LocalPlayer.Backpack) then
+			break
+		end
+	end
+	local on = false
+	local done = true 
+	
+	script.Parent.MouseButton1Click:connect(function()
+		on = not on
+		if not done then return end 
+		done = false 
+		if on then 
+			for _, Parts in pairs(workspace:GetDescendants()) do 
+				if Parts:IsA("Part") then 
+					if not Parts:FindFirstChild("SurfaceType") then 
+						local SurfaceType = Instance.new("StringValue",Parts)
+						SurfaceType.Name = "SurfaceType"
+						SurfaceType.Value = tostring(Parts.Material) 
+					end
+					Parts.Material  = "SmoothPlastic"
+				end
+			end
+		else 
+			for _, Parts in pairs(workspace:GetDescendants()) do 
+				if Parts:IsA("Part") and Parts:FindFirstChild("SurfaceType") then 
+					Parts.Material  = string.sub(Parts.SurfaceType.Value,15) 
+				end
+			end	
+		end
+		done = true 
+	end)
+end
+coroutine.wrap(KCLSY_fake_script)()
+local function YGVIQ_fake_script() -- Loaded.Load 
 	local script = Instance.new('LocalScript', Loaded)
 
 	local plr = game.Players.LocalPlayer
 	
 	script.Parent.Text = "Goodmorning, "..plr.Name..". Sodium Has been loaded for you."
 end
-coroutine.wrap(PTOZEWY_fake_script)()
+coroutine.wrap(YGVIQ_fake_script)()
